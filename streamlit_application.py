@@ -19,7 +19,17 @@ def add_student(name1, father_name1, age1, class_):
     class_names = {1: 'Grade 1', 2: 'Grade 2', 3: 'Grade 3', 4: 'Grade 4', 5: 'Grade 5', 6: 'Grade 6', 7: 'Grade 7', 8: 'Grade 8', 9: 'Grade 9', 10: 'Grade 10', 11: 'Grade 11', 12: 'Grade 12'}
 
     if age1 < 23 and age1 > 0:
-        if class_ in range(1, 13):
+        valid_classes = []
+        if age1 >= 6 and age1 <= 9:
+            valid_classes = list(range(1, 5))
+        elif age1 < 14 and age1 >= 10:
+            valid_classes = list(range(5, 9))
+        elif age1 < 18 and age1 > 10:
+            valid_classes = list(range(9, 11))
+        elif age1 <= 22 and age1 >= 18:
+            valid_classes = [11, 12]
+
+        if class_ in valid_classes:
             if seats[class_] > 0:
                 new_student = Student(name1, father_name1, age1, class_)
                 students.append(new_student)
@@ -50,9 +60,21 @@ def main():
         name = st.text_input("Enter the student's name:")
         father_name = st.text_input("Enter the student's father's name:")
         age = st.number_input("Enter the student's age:", min_value=1, max_value=22, value=1)
-        class_ = st.selectbox("Select the student's class:", [f"Grade {i}" for i in range(1, 13)])
+        
+        valid_classes = []
+        if age >= 6 and age <= 9:
+            valid_classes = list(range(1, 5))
+        elif age < 14 and age >= 10:
+            valid_classes = list(range(5, 9))
+        elif age < 18 and age > 10:
+            valid_classes = list(range(9, 11))
+        elif age <= 22 and age >= 18:
+            valid_classes = [11, 12]
+
+        class_options = [f"Grade {class_} (seats available: {seats[class_]})" for class_ in valid_classes]
+        class_ = st.selectbox("Select the student's class:", class_options)
         if st.button("Add Student"):
-            add_student(name, father_name, age, int(class_.split()[-1]))
+            add_student(name, father_name, age, int(class_.split()[1]))
     elif option == "View a student's data":
         gr_no = st.number_input("Enter the GR number of the student:", min_value=1, max_value=total_students, value=1)
         if st.button("View Student"):
