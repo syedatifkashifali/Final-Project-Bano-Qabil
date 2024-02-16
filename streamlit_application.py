@@ -31,11 +31,11 @@ def add_student(name1, father_name1, age1, class_):
 
         if class_ in valid_classes:
             if seats[class_] > 0:
+                global total_students
+                total_students += 1
                 new_student = Student(name1, father_name1, age1, class_)
                 students.append(new_student)
                 seats[class_] -= 1
-                global total_students
-                total_students += 1
                 st.success(f"Student {name1} has been added to Class: {class_}!, with the GR number: {total_students}")
             else:
                 st.error("No available seats for this class.")
@@ -43,6 +43,7 @@ def add_student(name1, father_name1, age1, class_):
             st.error("Invalid Class number")
     else:
         st.error("There are no classes available for the entered age.")
+
 
 def view_student(gr_no):
     if gr_no < 1 or gr_no > total_students:
