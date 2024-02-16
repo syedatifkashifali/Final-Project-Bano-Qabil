@@ -77,9 +77,13 @@ def main():
         if st.button("Add Student"):
             add_student(name, father_name, age, int(class_.split()[1]))
     elif option == "View a student's data":
-        gr_no = st.number_input("Enter the GR number of the student:", min_value=1, max_value=total_students, value=1)
-        if st.button("View Student"):
-            view_student(int(gr_no))
+        if total_students > 0:
+            gr_no = st.number_input("Enter the GR number of the student:", min_value=1, max_value=total_students, value=1)
+            if st.button("View Student"):
+                view_student(int(gr_no))
+        else:
+            st.warning("No students registered yet.")
+
 
 if __name__ == "__main__":
     main()
