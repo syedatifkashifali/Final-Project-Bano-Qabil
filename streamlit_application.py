@@ -32,7 +32,7 @@ def add_student(name1, father_name1, age1, class_):
             total_students += 1
             new_student = Student(name1, father_name1, age1, class_)
             students.append(new_student)
-            seats[class_] -= 1
+            seats[class_] -= 1  # Corrected line
             st.success(f"Student {name1} has been added to Class: {class_}!, with the GR number: {total_students}")
             return True
         else:
