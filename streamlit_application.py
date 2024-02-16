@@ -49,7 +49,8 @@ def view_student(gr_no):
         st.error("Invalid GR number.")
         return
     student = students[gr_no - 1]
-    st.info(f"Student name: {student.name}\nStudent father's name: {student.father_name}\nStudent age: {student.age}\nStudent class: {student.class_}")
+    st.info(f"Student name: {student.name}\nStudent father's name: {student.father_name}\nStudent age: {student.age}\nStudent class: {student.class_}\n")
+
 
 def main():
     st.title("Student Management System")
