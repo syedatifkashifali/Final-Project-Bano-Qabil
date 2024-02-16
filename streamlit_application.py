@@ -37,12 +37,14 @@ def add_student(name1, father_name1, age1, class_):
                 students.append(new_student)
                 seats[class_] -= 1
                 st.success(f"Student {name1} has been added to Class: {class_}!, with the GR number: {total_students}")
+                return True
             else:
                 st.error("No available seats for this class.")
         else:
             st.error("Invalid Class number")
     else:
         st.error("There are no classes available for the entered age.")
+    return False
 
 
 def view_student(gr_no):
@@ -76,7 +78,10 @@ def main():
         class_options = [f"Grade {class_} (seats available: {seats[class_]})" for class_ in valid_classes]
         class_ = st.selectbox("Select the student's class:", class_options)
         if st.button("Add Student"):
-            add_student(name, father_name, age, int(class_.split()[1]))
+            if add_student(name, father_name, age, int(class_.split()[1])):
+                name = ""
+                father_name = ""
+                age = 1
     elif option == "View a student's data":
         if total_students > 0:
             gr_no = st.number_input("Enter the GR number of the student:", min_value=1, max_value=total_students, value=1)
@@ -84,6 +89,7 @@ def main():
                 view_student(int(gr_no))
         else:
             st.warning("No students registered yet.")
+
 
 
 if __name__ == "__main__":
