@@ -16,29 +16,38 @@ seats = {
 }
 
 def add_student(name1, father_name1, age1, class_):
-    global total_students
-    valid_classes = []
-    if age1 >= 6 and age1 <= 9:
-        valid_classes = list(range(1, 5))
-    elif age1 < 14 and age1 >= 10:
-        valid_classes = list(range(5, 9))
-    elif age1 < 18 and age1 > 10:
-        valid_classes = list(range(9, 11))
-    elif age1 <= 22 and age1 >= 18:
-        valid_classes = [11, 12]
+    class_names = {
+        1: 'Grade 1', 2: 'Grade 2', 3: 'Grade 3', 4: 'Grade 4',
+        5: 'Grade 5', 6: 'Grade 6', 7: 'Grade 7', 8: 'Grade 8',
+        9: 'Grade 9', 10: 'Grade 10', 11: 'Grade 11', 12: 'Grade 12'
+    }
 
-    if class_ in valid_classes:
-        if seats[class_] > 0:
-            total_students += 1
-            new_student = Student(name1, father_name1, age1, class_)
-            students.append(new_student)
-            seats[class_] -= 1  # Corrected line
-            st.success(f"Student {name1} has been added to Class: {class_}!, with the GR number: {total_students}")
-            return True
+    if age1 < 23 and age1 > 0:
+        valid_classes = []
+        if age1 >= 6 and age1 <= 9:
+            valid_classes = list(range(1, 5))
+        elif age1 < 14 and age1 >= 10:
+            valid_classes = list(range(5, 9))
+        elif age1 < 18 and age1 > 10:
+            valid_classes = list(range(9, 11))
+        elif age1 <= 22 and age1 >= 18:
+            valid_classes = [11, 12]
+
+        if class_ in valid_classes:
+            if seats[int(class_.split()[2])] > 0:
+                global total_students
+                total_students += 1
+                new_student = Student(name1, father_name1, age1, int(class_.split()[2]))
+                students.append(new_student)
+                seats[int(class_.split()[2])] -= 1
+                st.success(f"Student {name1} has been added to Class: {class_names[int(class_.split()[2])]}!, with the GR number: {total_students}")
+                return True
+            else:
+                st.error("No available seats for this class.")
         else:
-            st.error("No available seats for this class.")
+            st.error("Invalid Class number")
     else:
-        st.error("Invalid Class number")
+        st.error("There are no classes available for the entered age.")
     return False
 def view_student(gr_no):
     if gr_no <= total_students:
