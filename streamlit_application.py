@@ -10,13 +10,17 @@ class Student:
 students = []
 total_students = 0
 seats = {
-    1: 20, 2: 20, 3: 20, 4: 20, 5: 20,
-    6: 20, 7: 20, 8: 20, 9: 20, 10: 20,
-    11: 20, 12: 20
+    1: 20, 2: 20, 3: 20, 4: 20,
+    5: 20, 6: 20, 7: 20, 8: 20,
+    9: 20, 10: 20, 11: 20, 12: 20
 }
 
 def add_student(name1, father_name1, age1, class_):
-    class_names = {1: 'Grade 1', 2: 'Grade 2', 3: 'Grade 3', 4: 'Grade 4', 5: 'Grade 5', 6: 'Grade 6', 7: 'Grade 7', 8: 'Grade 8', 9: 'Grade 9', 10: 'Grade 10', 11: 'Grade 11', 12: 'Grade 12'}
+    class_names = {
+        1: 'Grade 1', 2: 'Grade 2', 3: 'Grade 3', 4: 'Grade 4',
+        5: 'Grade 5', 6: 'Grade 6', 7: 'Grade 7', 8: 'Grade 8',
+        9: 'Grade 9', 10: 'Grade 10', 11: 'Grade 11', 12: 'Grade 12'
+    }
 
     if age1 < 23 and age1 > 0:
         valid_classes = []
@@ -46,14 +50,16 @@ def add_student(name1, father_name1, age1, class_):
         st.error("There are no classes available for the entered age.")
     return False
 
-
 def view_student(gr_no):
-    if gr_no < 1 or gr_no > total_students:
+    if gr_no <= total_students:
+        student = students[gr_no - 1]
+        st.write(f"GR number: {gr_no}")
+        st.write(f"Student name: {student.name}")
+        st.write(f"Student father's name: {student.father_name}")
+        st.write(f"Student age: {student.age}")
+        st.write(f"Student class: Grade {student.class_}")
+    else:
         st.error("Invalid GR number.")
-        return
-    student = students[gr_no - 1]
-    st.info(f"Student name: {student.name}\nStudent father's name: {student.father_name}\nStudent age: {student.age}\nStudent class: {student.class_}\n")
-
 
 def main():
     st.title("Student Management System")
@@ -89,8 +95,6 @@ def main():
                 view_student(int(gr_no))
         else:
             st.warning("No students registered yet.")
-
-
 
 if __name__ == "__main__":
     main()
