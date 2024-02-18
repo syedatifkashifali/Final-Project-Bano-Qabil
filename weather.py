@@ -1,31 +1,36 @@
 import streamlit as st
 import requests
-import json
 
-# Set up the Weather API
-url = "https://weatherapi-com.p.rapidapi.com/forecast.json"
-headers = {
-    'X-RapidAPI-Key': 'YOUR-API-KEY',
-    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-}
+# Set up the OpenWeatherMap API
+url = "https://api.openweathermap.org/data/2.5/weather?"
+api_key = "66869939e0b182ac2d6e17228f1a15c6"
 
 # Get the location input from the user
 location = st.text_input("Enter the location", "Chennai")
 
 # Set up the query parameters
-querystring = {"q":location}
+querystring = {"q":location, "appid":api_key, "units":"metric"}
 
 # Get the forecast data from the API
 response = requests.request("GET", url, headers=headers, params=querystring)
 result = response.text
 
 # Parse the JSON data
-data = json.loads(result)
+try:
+    data = json.loads(result)
+except json.JSONDecodeError as e:
+    st.write("Error: could not parse JSON data")
+    st.write(e)
+    return
 
 # Display the forecast data
-st.title("Weather Forecast")
-st.subheader(data["location"]["name"])
-st.write(f"Forecast for the next 5 days:")
-
-for forecast in data["forecast"]:
-    st.write(f"{forecast['date']}: {forecast['day']['condition']['text']} - {forecast['day']['maxtemp_c']}°C / {forecast['day']['mintemp_c']}°C")
+if "name" in 
+    st.title("Weather Forecast")
+    st.subheader(data["name"])
+    st.write(f"Temperature: {data['main']['temp']}°C")
+    st.write(f"Feels like: {data['main']['feels_like']}°C")
+    st.write(f"Humidity: {data['main']['humidity']}%")
+    st.write(f"Wind speed: {data['wind']['speed']} m/s")
+    st.write(f"Description: {data['weather'][0]['description']}")
+else:
+    st.write("Error: could not get weather data")
