@@ -1,4 +1,5 @@
 from cgitb import reset
+from turtle import onclick
 import streamlit as st
 
 class Student:
@@ -15,7 +16,9 @@ seats = {
 }
 
 def add_student():
-    with st.form(key='add_student_form', clear_on_submit = True):
+    
+    st.write(seats)
+    with st.form(key='add_student_form'):
         invalid = False
         name = st.text_input("Enter the student's name:")
         father_name = st.text_input("Enter the student's father's name:")
@@ -26,6 +29,7 @@ def add_student():
             class_index = st.selectbox("Select the class:", options)
             class_ = int(class_index.split()[1])  # Extracting class number from the selected option
             seats[class_] -= 1
+            st.write(seats)
         elif age < 14 and age >= 10:
             options = [f"Grade {class_} (seats available: {seats[class_]})" for class_ in range(5, 9)]
             class_index = st.selectbox("Select the class:", options)
@@ -74,6 +78,12 @@ def add_student():
                 global total_students
                 total_students += 1
                 st.success(f"Student {name} has been added to Class: {class_}!, with the GR number: {total_students}")
+                submit_button = st.form_submit_button(label='Refresh')
+                
+
+
+
+                
 
 def view_student():
     gr_no = st.number_input("Enter the GR number of the student:", min_value=1, max_value=total_students, step=1)
@@ -94,9 +104,11 @@ def main():
     st.title("Student Registration Application")
     st.write("Welcome to the Student Registration Application!")
 
-    if st.button("Add a student"):
+    option = st.selectbox("Select an option:", ["Add a student", "View a student's data"])
+
+    if option == "Add a student":
         add_student()
-    if st.button("View a student's data"):
+    elif option == "View a student's data":
         view_student()
 
 if __name__ == "__main__":
