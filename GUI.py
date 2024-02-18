@@ -1,3 +1,4 @@
+from atexit import _clear
 from cgitb import reset
 from turtle import onclick
 import streamlit as st
@@ -18,7 +19,7 @@ seats = {
 def add_student():
     
     st.write(seats)
-    with st.form(key='add_student_form'):
+    with st.form(key='add_student_form', clear_on_submit = True):
         invalid = False
         name = st.text_input("Enter the student's name:")
         father_name = st.text_input("Enter the student's father's name:")
@@ -78,7 +79,6 @@ def add_student():
                 global total_students
                 total_students += 1
                 st.success(f"Student {name} has been added to Class: {class_}!, with the GR number: {total_students}")
-                submit_button = st.form_submit_button(label='Refresh')
                 
 
 
