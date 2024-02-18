@@ -1,36 +1,28 @@
 import streamlit as st
-import requests
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
-# Set up the OpenWeatherMap API
-url = "https://api.openweathermap.org/data/2.5/weather?"
-api_key = "66869939e0b182ac2d6e17228f1a15c6"
+# Create a figure and axes
+fig, ax = plt.subplots()
 
-# Get the location input from the user
-location = st.text_input("Enter the location", "Chennai")
+# Create a line object
+line, = ax.plot([], [], 'ro')
 
-# Set up the query parameters
-querystring = {"q":location, "appid":api_key, "units":"metric"}
+# Define the animation function
+def animate(i):
+    # Generate some random data
+    x = np.linspace(0, 2 * np.pi, 100)
+    y = np.sin(x + i / 10.0)
 
-# Get the forecast data from the API
-response = requests.request("GET", url, headers=headers, params=querystring)
-result = response.text
+    # Update the line data
+    line.set_data(x, y)
 
-# Parse the JSON data
-try:
-    data = json.loads(result)
-except json.JSONDecodeError as e:
-    st.write("Error: could not parse JSON data")
-    st.write(e)
-    return
+    # Redraw the canvas
+    plt.draw()
 
-# Display the forecast data
-if "name" in 
-    st.title("Weather Forecast")
-    st.subheader(data["name"])
-    st.write(f"Temperature: {data['main']['temp']}°C")
-    st.write(f"Feels like: {data['main']['feels_like']}°C")
-    st.write(f"Humidity: {data['main']['humidity']}%")
-    st.write(f"Wind speed: {data['wind']['speed']} m/s")
-    st.write(f"Description: {data['weather'][0]['description']}")
-else:
-    st.write("Error: could not get weather data")
+# Create the animation object
+ani = animation.FuncAnimation(fig, animate, frames=100, interval=100)
+
+# Display the animation in Streamlit
+st.markdown("## Animation Example")
+st.pyplot(fig)
