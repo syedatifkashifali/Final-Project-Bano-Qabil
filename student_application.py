@@ -8,7 +8,7 @@ class Student:
         self.father_name = father_name
         self.age = age
         self.class_ = class_
-
+total_students = 0
 students = [] #creating array/list for students
 #creating dictionary for seats of each class, assuming key as class and value as seats
 seats = {
@@ -101,6 +101,7 @@ def view_student():#creating the second menu option to show the student's data
 
 while True:#creating counter for student that have been added
     if total_students == 0:
+        print("\t\t\t:Welcome to Student Registration Application:\n")
         print("No students registered yet.")
     else:
         print(f"We currently have {total_students} registered students in our application")
