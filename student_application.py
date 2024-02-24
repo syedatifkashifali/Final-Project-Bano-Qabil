@@ -10,7 +10,6 @@ class Student:
         self.class_ = class_
 
 students = [] #creating array/list for students
-total_students = 0 #number for students that have been registered
 #creating dictionary for seats of each class, assuming key as class and value as seats
 seats = {
     1: 20,
