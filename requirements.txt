@@ -82,7 +82,6 @@ zipp==3.17.0
 streamlit==1.31.1
 streamlit-lottie==0.0.5
 streamlit-option-menu==0.3.12
-sqlite3==3.43.1
 matplotlib==3.8.3
 pandas==2.2.0
 io
