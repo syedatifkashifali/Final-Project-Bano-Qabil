@@ -9,17 +9,20 @@ import base64
 import requests
 
 
+
+def load_lottiefile(filepath: str):
+    with open(filepath, "r") as f:
+        return json.load(f)
+
+
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+
 def home():
-    def load_lottiefile(filepath: str):
-        with open(filepath, "r") as f:
-            return json.load(f)
-
-
-    def load_lottieurl(url: str):
-        r = requests.get(url)
-        if r.status_code != 200:
-            return None
-        return r.json()
     
     st.markdown("""
     <style>
@@ -318,12 +321,69 @@ def home():
     
 
 def about():
-    st.title("About Page")
-    st.write("This is the About Page.")
+    
+    # Load Lottie animation
+    lottie_about = load_lottieurl("https://lottie.host/a4b50922-dc97-428c-95d7-7d549638ee62/iRpe1oQzk2.json")
+
+    # Display Lottie animation
+    st.lottie(lottie_about, speed=1, reverse=False, loop=False, quality="medium", height=400, width=None)
+
+    # Add your content
+    st.write("""
+        Hey there! 👋 I'm Syed Atif Ali, a passionate secondary student from Pakistan with a keen interest in programming and technology. Programming has always been my playground, and I find joy in exploring various programming languages, including Python, C#, and C++.
+
+        ### Skills & Expertise
+        - **Python:** Python is my go-to language for its simplicity and versatility. I love how I can use it for anything from web development to data analysis.
+        - **C#:** As a versatile language, C# allows me to develop robust applications, especially for the Windows platform.
+        - **C++:** I enjoy diving into the intricacies of C++ for high-performance applications and system-level programming.
+
+        ### Journey & Aspirations
+        My journey in programming started at a young age, fueled by curiosity and a desire to create. I'm currently honing my skills as a secondary student while exploring new avenues in technology.
+
+        While I don't have a specific goal in mind, my mindset is geared towards continuous growth. I believe in setting milestones rather than fixed goals, always striving to learn, adapt, and innovate. My bucket list includes becoming a data scientist, leveraging my programming skills to extract insights from vast datasets and make data-driven decisions.
+
+        ### Why Programming?
+        Programming, for me, is more than just writing code. It's about problem-solving, creativity, and the thrill of turning ideas into reality. I'm fascinated by the endless possibilities that technology offers and the impact it can have on the world.
+
+        ### Let's Connect!
+        If you share a passion for programming or want to explore the exciting world of technology together, feel free to reach out. Let's collaborate, learn, and grow together!
+    """)
+
 
 def contact():
     st.title("Contact Page")
-    st.write("You can contact us at contact@example.com.")
+    
+    # Load Lottie animation
+    lottie_contact = load_lottieurl("https://lottie.host/6953afeb-c2b3-4ed8-8f20-33614a276a9b/bSaAZy50gu.json")
+    lottie_mail = load_lottieurl("https://lottie.host/8f76b3be-1fbc-40a0-a4ae-adc137378bce/5yHOlUSOM6.json")
+    lottie_sm = load_lottieurl("https://lottie.host/a6c0db26-9df7-4672-ac97-7832b7286946/Hgg5Grnn8O.json")
+    lottie_phone = load_lottieurl("https://lottie.host/804c12e5-4869-49b7-9cf4-b22edd305840/uiHWLfWRvV.json")
+    
+    # Display Lottie animation
+    st.lottie(lottie_contact, speed=1, reverse=False, loop=True, quality="medium", height=400, width=None)
+
+    st.subheader("Contact Me:")
+    st.write("Feel free to reach out to me via any of the methods above. I'm always open to discussing new opportunities, projects, or just having a chat!")
+    st.markdown("<hr></hr>", unsafe_allow_html = True)
+    
+    st.subheader("Email:")
+    st.lottie(lottie_mail, speed=1, reverse=False, loop=True, quality="medium", height=200, width=None)
+    st.markdown("[atif@fastcompk.com](mailto:atif@fastcompk.com) <h5>(FastcomPK Webmail)</h5>", unsafe_allow_html = True)
+    st.markdown("[corruptedgamerz977@gmail.com](mailto:corruptedgamerz977@gmail.com) <h5>(Gmail)</h5>", unsafe_allow_html = True)
+    st.markdown("<hr></hr>", unsafe_allow_html = True)
+
+    st.subheader("Social Media:")
+    st.lottie(lottie_sm, speed=1, reverse=False, loop=True, quality="medium", height=200, width=None)
+    st.markdown("[<h5>LinkedIn</h5>](https://www.linkedin.com/in/atif-ali-3b23812b4)", unsafe_allow_html = True)
+    st.markdown("[<h5>Twitter</h5>](https://twitter.com/s_atifkashifali)", unsafe_allow_html = True)
+    st.markdown("[<h5>Thread</h5>](https://twitter.com/syedatifkashifali)", unsafe_allow_html = True)
+    st.markdown("<hr></hr>", unsafe_allow_html = True)
+
+    st.subheader("Phone/WhatsApp:")
+    st.lottie(lottie_phone, speed=1, reverse=False, loop=True, quality="medium", height=200, width=None)
+    st.write("<h5>0315-2849277</h5>", unsafe_allow_html = True)
+    st.markdown("<hr></hr>", unsafe_allow_html = True)
+    
 
 def main():
     # Create a navigation bar
@@ -336,7 +396,7 @@ def main():
         about()
     elif nav == "Contact":
         contact()
+        
 
 if __name__ == "__main__":
     main()
-
