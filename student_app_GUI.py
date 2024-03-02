@@ -336,6 +336,11 @@ def about():
     st.write("""
         Hey there! 👋 I'm Syed Atif Ali, a passionate secondary student from Pakistan with a keen interest in programming and technology. Programming has always been my playground, and I find joy in exploring various programming languages, including Python, C#, and C++.
 
+        ###Our Members
+        - **Mubashir** Contact no: 0336-3352993
+        - **Hammad:** Contact no: 0340-0246683
+
+
         ### Skills & Expertise
         - **Python:** Python is my go-to language for its simplicity and versatility. I love how I can use it for anything from web development to data analysis.
         - **C#:** As a versatile language, C# allows me to develop robust applications, especially for the Windows platform.
@@ -390,6 +395,10 @@ def contact():
     
 
 def main():
+    
+    # Company logo
+    st.sidebar.image("icc.jpg", use_column_width=True)
+    
     # Create a navigation bar
     nav = st.sidebar.radio("Navigation", ["Home", "About", "Contact"])
 
