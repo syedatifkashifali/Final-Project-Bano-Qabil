@@ -98,10 +98,11 @@ def home():
     def get_available_seats(selected_class):
         seats = {1: 20, 2: 20, 3: 30, 4: 40, 5: 50, 6: 50, 7: 50, 8: 50, 9: 50, 10: 50, 11: 50, 12: 50}
         if selected_class == "Grade 1" or "Grade 2":
-            getseats = seats.get(int(selected_class[-1:-2]), 0)#[-1] get the last character of string and if the selected class doesn't found dictionary it will return 0 by default
+            last_two_keys = sorted(seats.keys())[-2:]  # Get the last two keys of the dictionary
+            return sum(seats[key] for key in last_two_keys)
         else:
             getseats = seats.get(int(selected_class[-1]), 0)
-        return getseats
+            return getseats
 
     # Function to get available seats for all classes
     def get_available_seats_all():
