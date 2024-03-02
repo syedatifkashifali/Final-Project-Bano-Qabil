@@ -97,7 +97,7 @@ def home():
     # Function to get available seats for a selected class
     def get_available_seats(selected_class):
         seats = {1: 20, 2: 20, 3: 30, 4: 40, 5: 50, 6: 50, 7: 50, 8: 50, 9: 50, 10: 50, 11: 50, 12: 50}
-        if selected_class == "Grade 1" or "Grade 2":
+        if selected_class == "Grade 10" or "Grade 11" or "Grade 12:
             last_two_keys = sorted(seats.keys())[-2:]  # Get the last two keys of the dictionary
             getseats = seats.get(int(selected_class[-2:]), 0)
         else:
