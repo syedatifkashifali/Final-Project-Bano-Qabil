@@ -97,8 +97,11 @@ def home():
     # Function to get available seats for a selected class
     def get_available_seats(selected_class):
         seats = {1: 20, 2: 20, 3: 30, 4: 40, 5: 50, 6: 50, 7: 50, 8: 50, 9: 50, 10: 50, 11: 50, 12: 50}
-        return seats.get(int(selected_class[-1]), 0)#[-1] get the last character of string and if the selected class doesn't found dictionary it will return 0 by default
-
+        if selected_class > 9:
+            getseats = seats.get(int(selected_class[-2]), 0)#[-1] get the last character of string and if the selected class doesn't found dictionary it will return 0 by default
+        else:
+            getseats = seats.get(int(selected_class[-1]), 0)
+        return getseats
 
     # Function to get available seats for all classes
     def get_available_seats_all():
