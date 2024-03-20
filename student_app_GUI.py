@@ -334,7 +334,7 @@ def about():
 
     # Add your content
     st.write("""
-        Hey there! 👋 I'm Syed Atif Ali, a passionate secondary student from Pakistan with a keen interest in programming and technology. Programming has always been my playground, and I find joy in exploring various programming languages, including Python, C#, and C++.
+        Hey there! 👋 I'm Syed Atif Ali, a passionate secondary student from Pakistan with a keen interest in programming and data structure and algorithms. Problem solving in programming has always been my playground, and I find joy in exploring various programming languages, including Python, C#, and C++.
 
         ### Our Members
         - **Mubashir** Contact no: 0336-3352993
@@ -342,14 +342,14 @@ def about():
 
 
         ### Skills & Expertise
-        - **Python:** Python is my go-to language for its simplicity and versatility. I love how I can use it for anything from web development to data analysis.
+        - **Python:** Python is my go-to language for its simplicity and versatility. I love how I can use it for anything from web development to data science and machine learning.
         - **C#:** As a versatile language, C# allows me to develop robust applications, especially for the Windows platform.
         - **C++:** I enjoy diving into the intricacies of C++ for high-performance applications and system-level programming.
 
         ### Journey & Aspirations
         My journey in programming started at a young age, fueled by curiosity and a desire to create. I'm currently honing my skills as a secondary student while exploring new avenues in technology.
 
-        While I don't have a specific goal in mind, my mindset is geared towards continuous growth. I believe in setting milestones rather than fixed goals, always striving to learn, adapt, and innovate. My bucket list includes becoming a data scientist, leveraging my programming skills to extract insights from vast datasets and make data-driven decisions.
+        I have set my goal in mind, my mindset is geared towards continuous growth. Although I believe in setting milestones rather than fixed goals, always striving to learn, adapt, and innovate. My bucket list includes becoming a data scientist, leveraging my programming skills to extract insights from vast datasets and make data-driven decisions, as well as love to solve problems especially problems those are difficult.
 
         ### Why Programming?
         Programming, for me, is more than just writing code. It's about problem-solving, creativity, and the thrill of turning ideas into reality. I'm fascinated by the endless possibilities that technology offers and the impact it can have on the world.
