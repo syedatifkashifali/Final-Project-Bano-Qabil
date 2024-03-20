@@ -187,7 +187,7 @@ def home():
 
     # Streamlit UI option menu horizontal
     selected = option_menu(
-        menu_title = "Bano-Qabil Student Registration Application",
+        menu_title = "Student Registration Application By Syed Atif Ali",
         options = ["Add Student", "View Student", "Delete Student", "All Records"],
         icons = ["house", "person-lines-fill", "person-x", "journal-bookmark-fill"],
         orientation = "horizontal",
