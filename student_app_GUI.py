@@ -397,7 +397,7 @@ def contact():
 def main():
     
     # Company logo
-    st.sidebar.image("download.png", use_column_width=True)
+    st.sidebar.image("myself.jpeg", use_column_width=True)
     
     # Create a navigation bar
     nav = st.sidebar.radio("Navigation", ["Home", "About", "Contact"])
